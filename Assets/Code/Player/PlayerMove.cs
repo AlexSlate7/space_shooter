@@ -1,6 +1,7 @@
 using UnityEngine;
 using Code.Infrastructure;
 using Code.Services.Input;
+using Code.CameraLogic;
 
 namespace Code.Player
 {
@@ -21,7 +22,9 @@ namespace Code.Player
         private void Start()
         {
             _camera = Camera.main;
+            CameraFollow();
         }
+
 
         private void Update()
         {
@@ -34,6 +37,8 @@ namespace Code.Player
             }
             CharacterController.Move(MovementSpeed * movementVector * Time.deltaTime);
         }
+
+        private void CameraFollow() => _camera.GetComponent<CameraFollow>().Follow(gameObject);
     }
 }
 
