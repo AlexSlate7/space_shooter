@@ -6,15 +6,12 @@ namespace Code.Infrastructure
     public class Game
     {
         public static IInputService InputService;
+        public GameStateMachine StateMachine;
 
         public Game()
         {
-            RegisterInputService();
+            StateMachine = new GameStateMachine();
         }
 
-        private void RegisterInputService()
-        {
-            InputService = new InputService();
-        }
     }
 }
