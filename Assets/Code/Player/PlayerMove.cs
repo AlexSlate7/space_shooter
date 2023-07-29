@@ -1,7 +1,6 @@
 using UnityEngine;
 using Code.Infrastructure;
 using Code.Services.Input;
-using Code.CameraLogic;
 
 namespace Code.Player
 {
@@ -22,7 +21,6 @@ namespace Code.Player
         private void Start()
         {
             _camera = Camera.main;
-            CameraFollow();
         }
 
 
@@ -30,7 +28,7 @@ namespace Code.Player
         {
             Vector3 movementVector = Vector3.zero;
 
-            if (_inputService.Axis.sqrMagnitude > 0.001)
+            if (_inputService.Axis.sqrMagnitude > 0.001f)
             {
                 movementVector = _camera.transform.TransformDirection(_inputService.Axis);
                 movementVector.Normalize();
@@ -38,7 +36,6 @@ namespace Code.Player
             CharacterController.Move(MovementSpeed * movementVector * Time.deltaTime);
         }
 
-        private void CameraFollow() => _camera.GetComponent<CameraFollow>().Follow(gameObject);
     }
 }
 
