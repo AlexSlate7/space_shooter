@@ -1,5 +1,6 @@
 ﻿using System;
 using Code.Infractructure.Services;
+using Code.Infractructure.Services.PersistentProgress;
 using Code.Services.Input;
 
 namespace Code.Infrastructure.AssetManagement
@@ -37,6 +38,7 @@ namespace Code.Infrastructure.AssetManagement
         {
             _services.RegisterSingle<IInputService>(InputService());
             _services.RegisterSingle<IAssets>(new AssetProvider());
+            _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssets>()));
         }
 
