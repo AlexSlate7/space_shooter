@@ -1,14 +1,14 @@
 ﻿using Code.Infrastructure.AssetManagement;
 using UnityEngine;
 
-namespace Code.Infrastructure
+namespace Code.Infrastructure.AssetManagement
 {
     public class GameFactory : IGameFactory
     {
 
-        private readonly IAssetProvider _assets;
+        private readonly IAssets _assets;
 
-        public GameFactory(IAssetProvider assets)
+        public GameFactory(IAssets assets)
         {
             _assets = assets;
         }

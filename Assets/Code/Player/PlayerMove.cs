@@ -1,6 +1,6 @@
 using UnityEngine;
-using Code.Infrastructure;
 using Code.Services.Input;
+using Code.Infractructure.Services;
 
 namespace Code.Player
 {
@@ -15,7 +15,7 @@ namespace Code.Player
 
         private void Awake()
         {
-            _inputService = Game.InputService;
+            _inputService = AllServices.Container.Single<IInputService>();
         }
 
         private void Start()

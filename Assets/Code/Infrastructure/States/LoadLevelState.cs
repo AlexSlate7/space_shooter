@@ -2,7 +2,7 @@
 using Code.Logic;
 using UnityEngine;
 
-namespace Code.Infrastructure
+namespace Code.Infrastructure.AssetManagement
 {
     public class LoadLevelState : IPayloadedState<string>
     {
@@ -12,11 +12,12 @@ namespace Code.Infrastructure
         private readonly LoadCurtain _curtain;
         private readonly IGameFactory _gameFactory;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadCurtain curtain)
+        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadCurtain curtain, IGameFactory gameFactory)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _curtain = curtain;
+            _gameFactory = gameFactory;
         }
 
         public void Enter(string sceneName)
