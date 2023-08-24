@@ -7,7 +7,6 @@ namespace Code.Player
 
     public class PlayerMove : MonoBehaviour
     {
-        public CharacterController CharacterController;
         public float MovementSpeed;
 
         private IInputService _inputService;
@@ -33,7 +32,7 @@ namespace Code.Player
                 movementVector = _camera.transform.TransformDirection(_inputService.Axis);
                 movementVector.Normalize();
             }
-            CharacterController.Move(MovementSpeed * movementVector * Time.deltaTime);
+            transform.position += movementVector * (MovementSpeed * Time.deltaTime);
         }
 
     }
