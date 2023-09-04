@@ -1,11 +1,13 @@
+using Code.Data;
 using UnityEngine;
 using Code.Services.Input;
 using Code.Infractructure.Services;
+using Code.Infractructure.Services.PersistentProgress;
 
 namespace Code.Player
 {
 
-    public class PlayerMove : MonoBehaviour
+    public class PlayerMove : MonoBehaviour, ISavedProgress
     {
         public float MovementSpeed;
 
@@ -35,6 +37,15 @@ namespace Code.Player
             transform.position += movementVector * (MovementSpeed * Time.deltaTime);
         }
 
+        public void LoadProgress(PlayerProgress progress)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void UpdateProgress(PlayerProgress progress)
+        {
+            progress.WorldData.Position = transform.position.AsVectorData();
+        }
     }
 }
 
