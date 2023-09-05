@@ -39,7 +39,8 @@ namespace Code.Player
 
         public void LoadProgress(PlayerProgress progress)
         {
-            throw new System.NotImplementedException();
+            var savedPosition = progress.WorldData.Position;
+            transform.position = savedPosition.AsUnityVector();
         }
 
         public void UpdateProgress(PlayerProgress progress)
