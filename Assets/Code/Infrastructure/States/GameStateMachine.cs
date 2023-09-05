@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Code.Infractructure.Services;
+using Code.Infractructure.Services.PersistentProgress;
+using Code.Infrastructure.Services.SaveLoad;
+using Code.Infrastructure.States;
 using Code.Logic;
 using UnityEngine;
 
@@ -17,6 +20,7 @@ namespace Code.Infrastructure.AssetManagement
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, services.Single<IGameFactory>()),
+                [typeof(LoadProgressState)] = new LoadProgressState(this, services.Single<IPersistentProgressService>(), services.Single<ISaveLoadService>()),
                 [typeof(GameLoopState)] = new GameLoopState(this),
 
             };
