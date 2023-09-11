@@ -1,4 +1,6 @@
-﻿using Code.Infractructure.Services;
+﻿using System.Collections.Generic;
+using Code.Infractructure.Services;
+using Code.Infractructure.Services.PersistentProgress;
 using UnityEngine;
 
 namespace Code.Infrastructure.AssetManagement
@@ -7,5 +9,8 @@ namespace Code.Infrastructure.AssetManagement
     {
         GameObject CreatePlayer(GameObject at);
         void CreateHud();
+        List<ISavedProgressReader> ProgressReaders { get; }
+        List<ISavedProgress> ProgressWriters { get; }
+        void Cleanup();
     }
 }

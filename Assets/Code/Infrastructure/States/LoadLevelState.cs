@@ -23,6 +23,7 @@ namespace Code.Infrastructure.AssetManagement
         public void Enter(string sceneName)
         {
             _curtain.Show();
+            _gameFactory.Cleanup();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 
