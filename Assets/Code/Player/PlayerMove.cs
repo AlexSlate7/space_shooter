@@ -9,7 +9,7 @@ namespace Code.Player
 
     public class PlayerMove : MonoBehaviour, ISavedProgress
     {
-        public float MovementSpeed;
+        [SerializeField] private float _movementSpeed;
 
         private IInputService _inputService;
         private Camera _camera;
@@ -34,13 +34,16 @@ namespace Code.Player
                 movementVector = _camera.transform.TransformDirection(_inputService.Axis);
                 movementVector.Normalize();
             }
-            transform.position += movementVector * (MovementSpeed * Time.deltaTime);
+            transform.position += movementVector * (_movementSpeed * Time.deltaTime);
         }
 
         public void LoadProgress(PlayerProgress progress)
         {
-            var savedPosition = progress.WorldData.Position;
-            transform.position = savedPosition.AsUnityVector();
+            Vector3Data savedPosition = progress.WorldData.Position;
+            if (savedPosition != null)
+            {
+                transform.position = savedPosition.AsUnityVector();
+            }
         }
 
         public void UpdateProgress(PlayerProgress progress)
