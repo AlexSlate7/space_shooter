@@ -23,9 +23,9 @@ namespace Code.Infrastructure.Factory
             _assets = assets;
         }
 
-        public void CreateHud()
+        public GameObject CreateHud()
         {
-            InstantiateRegistered(AssetPath.HudPath);
+            return InstantiateRegistered(AssetPath.HudPath);
         }
 
         public GameObject CreatePlayer(GameObject at)

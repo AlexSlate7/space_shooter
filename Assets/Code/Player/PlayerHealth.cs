@@ -1,3 +1,4 @@
+using System;
 using Code.Data;
 using Code.Infractructure.Services.PersistentProgress;
 using UnityEngine;
@@ -7,10 +8,19 @@ namespace Code.Player
     public class PlayerHealth : MonoBehaviour, ISavedProgress
     {
         private State _state;
+
+        public Action HealthChanged;
         public float Current
         {
-            get => _state.CurrentHP; 
-            set => _state.CurrentHP = value; 
+            get => _state.CurrentHP;
+            set
+            {
+                if (_state.CurrentHP != value)
+                {
+                    _state.CurrentHP = value;
+                    HealthChanged?.Invoke();
+                }
+            }
         }
 
         public float Max
@@ -22,6 +32,7 @@ namespace Code.Player
         public void LoadProgress(PlayerProgress progress)
         {
             _state = progress.PlayerState;
+            HealthChanged?.Invoke();
         }
 
         public void UpdateProgress(PlayerProgress progress)

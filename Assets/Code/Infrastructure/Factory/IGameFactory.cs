@@ -13,7 +13,7 @@ namespace Code.Infrastructure.AssetManagement
         event Action PlayerCreated;
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
-        void CreateHud();
+        GameObject CreateHud();
         void Cleanup();
     }
 }

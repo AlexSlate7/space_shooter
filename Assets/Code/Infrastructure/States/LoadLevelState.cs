@@ -1,6 +1,8 @@
 ﻿using Code.CameraLogic;
 using Code.Infractructure.Services.PersistentProgress;
 using Code.Logic;
+using Code.Player;
+using Code.UI;
 using UnityEngine;
 
 namespace Code.Infrastructure.AssetManagement
@@ -54,9 +56,15 @@ namespace Code.Infrastructure.AssetManagement
         private void InitGameWorld()
         {
             GameObject player = _gameFactory.CreatePlayer(GameObject.FindWithTag(SpawnPointTag));
-            _gameFactory.CreateHud();
+            InitHud(player);
 
             CameraFollow(player);
+        }
+
+        private void InitHud(GameObject player)
+        {
+            GameObject hud = _gameFactory.CreateHud();
+            hud.GetComponentInChildren<ActorUI>().Construct(player.GetComponent<PlayerHealth>());
         }
 
 
