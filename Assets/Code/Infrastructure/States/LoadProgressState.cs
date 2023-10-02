@@ -33,6 +33,13 @@ namespace Code.Infrastructure.States
                 _saveLoadService.LoadProgress() 
                 ?? NewProgress();
 
-        private PlayerProgress NewProgress() => new PlayerProgress("Main");
+        private PlayerProgress NewProgress()
+        {
+            var progress = new PlayerProgress("Main");
+            progress.PlayerState.MaxHP = 100;
+            progress.PlayerState.ReseHP();
+
+            return progress;
+        }
     }
 }
