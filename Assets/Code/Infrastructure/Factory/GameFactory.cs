@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Code.Infractructure.Services.PersistentProgress;
 using Code.Infrastructure.AssetManagement;
@@ -9,9 +10,13 @@ namespace Code.Infrastructure.Factory
     public class GameFactory : IGameFactory
     {
         private readonly IAssets _assets;
+
+        public event Action PlayerCreated;
         
+        public GameObject PlayerGameObject { get; set; }
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
+
 
         public GameFactory(IAssets assets)
         {
@@ -25,9 +30,9 @@ namespace Code.Infrastructure.Factory
 
         public GameObject CreatePlayer(GameObject at)
         {
-            var gameObject = InstantiateRegistered(AssetPath.PlayerPath, at.transform.position);
-
-            return gameObject;
+            PlayerGameObject = InstantiateRegistered(AssetPath.PlayerPath, at.transform.position);
+            PlayerCreated?.Invoke();
+            return PlayerGameObject;
         }
 
         public void Cleanup()
